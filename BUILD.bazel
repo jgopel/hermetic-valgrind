@@ -8,3 +8,13 @@ cc_binary(
     name = "leak",
     srcs = ["leak.cpp"],
 )
+
+load("@rules_foreign_cc//foreign_cc:defs.bzl", "configure_make")
+
+configure_make(
+    name = "valgrind",
+    out_binaries = ["valgrind"],
+    autogen = True,
+    configure_in_place = True,
+    lib_source = "@valgrind//:all_files",
+)
